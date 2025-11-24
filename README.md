@@ -1,10 +1,10 @@
-# RISC-V_VSDBabySoc_RTL2GDSII
+<img width="1920" height="907" alt="Screenshot (522)" src="https://github.com/user-attachments/assets/6034dc8b-255b-4cd9-afa6-968c463c3ba1" /># RISC-V_VSDBabySoc_RTL2GDSII
 
 ## Table of Contents
-- [Part 1: Introduction to SoC & Pre-synthesis and Post-synthesis verification flow for a minimal RISC-V System-on-Chip (SoC) )](#part-2-Introduction-to-SoC-&-Pre-synthesis-&-Post-synthesis-verification-for-RISC-V)                                                      
-- [Part 2:Introduction to STA & Timing Graphs using openSTA)](#part-2-Introduction-to-STA-&-Timing-Graphs-using-openSTA)
+- [Part 1: Introduction to SoC & Pre-synthesis and Post-synthesis verification flow for a minimal RISC-V System-on-Chip (SoC)](#part-2-Introduction-to-SoC-&-Pre-synthesis-&-Post-synthesis-verification-for-RISC-V)                                                      
+- [Part 2:Introduction to STA & Timing Graphs using openSTA](#part-2-Introduction-to-STA-&-Timing-Graphs-using-openSTA)
 - [Part 3: Theory & Implementation of BabySoC Physical Design](#part-3-Theory-&-Implementation-of-BabySoC-Physical-Design)
-- [Part 4: )](#part-4-)
+- [Part 4: SPEF & Post-Layout STA & Timing Graphs Across PVT Corners for Routed VSDBabySoC](#part-4-SPEF-&-Post-Layout-STA-&-Timing-Graphs-Across-PVT-Corners-for-Routed-VSDBabySoC)
 
 
 
@@ -2570,6 +2570,16 @@ To view the floorplan:
 ```bash
 make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk gui_floorplan
 ```
+<img width="1920" height="875" alt="Screenshot (508)" src="https://github.com/user-attachments/assets/933d09aa-d4ba-45f1-89b2-22e6aa37bcad" />
+
+
+<img width="1920" height="917" alt="Screenshot (504)" src="https://github.com/user-attachments/assets/4128a66e-b1ad-4be2-98aa-71af9fd40a30" />
+<img width="1824" height="894" alt="Screenshot (506)" src="https://github.com/user-attachments/assets/72060893-1d8f-43c8-98df-04d8dd87b2c0" />
+
+<img width="1920" height="926" alt="Screenshot (507)" src="https://github.com/user-attachments/assets/ba8f9e7c-e048-4a11-a21d-a02cb80e6044" />
+
+
+
 
 
 
@@ -2588,9 +2598,36 @@ To view placement and congestion:
 ```bash
 make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk gui_place
 ```
+<img width="1920" height="923" alt="Screenshot (510)" src="https://github.com/user-attachments/assets/1e434790-1c34-4e8d-8f3c-7880f5866195" />
+
+<img width="1920" height="926" alt="Screenshot (512)" src="https://github.com/user-attachments/assets/83f96dc6-3f60-401f-a01e-42f29a404959" />
+<img width="1920" height="917" alt="Screenshot (513)" src="https://github.com/user-attachments/assets/0e864480-5026-491b-a7a4-eaf3176d74fb" />
+<img width="1920" height="936" alt="Screenshot (514)" src="https://github.com/user-attachments/assets/9f50bc72-c6be-44ea-82a8-90345c82b103" />
+<img width="1920" height="885" alt="Screenshot (516)" src="https://github.com/user-attachments/assets/fab833a6-bf23-4a84-838a-995e0a1a239d" />
+<img width="1920" height="887" alt="Screenshot (517)" src="https://github.com/user-attachments/assets/14e60bb6-e74c-4ff3-b561-120fabebde2b" />
+
+<img width="1920" height="904" alt="Screenshot (518)" src="https://github.com/user-attachments/assets/8f558532-f2fe-472a-bb0b-7b2d387784c5" />
+
+<img width="1920" height="897" alt="Screenshot (519)" src="https://github.com/user-attachments/assets/0f15460e-1a24-4f13-99e0-accbcb8db230" />
+
+<img width="1920" height="898" alt="Screenshot (520)" src="https://github.com/user-attachments/assets/4a95075c-4cbb-4b77-9812-13a3855033eb" />
 
 
+<img width="1920" height="910" alt="Screenshot (521)" src="https://github.com/user-attachments/assets/4093ee21-5cd6-47e6-99d6-a8f71a0e6d7a" />
 
+<img width="1920" height="907" alt="Screenshot (522)" src="https://github.com/user-attachments/assets/1301baf0-01d9-4dd0-9d37-0cda419ca3ea" />
+
+
+<img width="1920" height="909" alt="Screenshot (523)" src="https://github.com/user-attachments/assets/15aac011-263c-4b4c-81e1-db1c7c2f63f5" />
+
+
+<img width="1920" height="897" alt="Screenshot (524)" src="https://github.com/user-attachments/assets/6861e878-4053-43c4-b648-836222b1347e" />
+
+
+<img width="1920" height="900" alt="Screenshot (525)" src="https://github.com/user-attachments/assets/4591472c-ab8a-4c6a-8dbf-ebc4102d2896" />
+
+
+<img width="1920" height="903" alt="Screenshot (526)" src="https://github.com/user-attachments/assets/76754562-0192-4a00-b22d-71627407a38d" />
 
 
 
@@ -2786,7 +2823,19 @@ make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk gui_cts
 ```
 
 
+<img width="1920" height="920" alt="Screenshot (527)" src="https://github.com/user-attachments/assets/69741f37-2674-43f0-808f-0f7ed5c86781" />
 
+<img width="1920" height="926" alt="Screenshot (528)" src="https://github.com/user-attachments/assets/d9b3cac7-81c1-4d47-aa99-ba60f4eeba51" />
+<img width="1920" height="917" alt="Screenshot (529)" src="https://github.com/user-attachments/assets/dafa6de2-0a42-4d98-bd49-e6b667f2b5f6" />
+
+<img width="1920" height="901" alt="Screenshot (530)" src="https://github.com/user-attachments/assets/56009502-6a59-48e3-8814-fcabb6a5eeaf" />
+
+
+<img width="1920" height="901" alt="Screenshot (531)" src="https://github.com/user-attachments/assets/fead1ac6-7a87-4aa6-b56c-955da89b2550" />
+<img width="1920" height="907" alt="Screenshot (532)" src="https://github.com/user-attachments/assets/e2ce790f-73b1-4073-8290-32a54fad47eb" />
+
+
+<img width="1920" height="913" alt="Screenshot (533)" src="https://github.com/user-attachments/assets/7ccfae75-efab-4677-9041-a1e33f7357f2" />
 
 
 ### 6. Routing
@@ -3228,7 +3277,7 @@ OpenROAD's TritonRoute requires:
 Total Overflow: 29 violations
 ```
 
-![alt text](assets/22.png)
+
 
 ### After Fix
 
@@ -3300,8 +3349,12 @@ This routing failure exemplifies a common challenge in mixed-signal SoC design: 
 
 
 
+### Part 4: SPEF & Post-Layout STA & Timing Graphs Across PVT Corners for Routed VSDBabySoC
 
-
+<details>
+  <summary>
+    THEORY
+  </summary>
 
 
 
@@ -3368,9 +3421,6 @@ OpenROAD command:
 estimate_parasitics -spef design.spef
 ```
 
-
-
-
 OR, in newer flows:
 ```bash
 write_spef design.spef
@@ -3414,23 +3464,74 @@ report_wns
  Understanding how the generated SPEF is used for post-route STA in real design flows.
 
 
+To perform Post-Layout Static Timing Analysis (STA) using the SPEF generated after 
+routing , analyze timing across all PVT corners, and compare post-route results 
+with post-synthesis timing data from Part-2.
+
+### Why This Task Is Important 
+This final step closes the full ASIC flow. 
+We have moved from 
+### RTL → Synthesis → Physical Design → Parasitic Extraction. 
+Now, by performing post-layout STA, you will see: 
+• How routing parasitics (SPEF) change the path delays compared to the ideal 
+netlist. 
+• The impact of PVT (Process, Voltage, Temperature) variations on timing. 
+• How design optimization improves or worsens timing after layout. 
+Understanding these timing differences is critical for tape-out readiness — this is how 
+real silicon accuracy is verified before fabrication.
+
+
+### Tasks
+
+### 1. Load Post-Route Design into OpenSTA 
+• Import: 
+o Gate-level netlist 
+o Library files for all PVT corners 
+o Extracted SPEF file 
+o Timing constraints (SDC) 
+• Use the provided TCL script to run STA across multiple corners (TT, SS, FF, etc.). 
+
+### 2. Generate Post-Route Timing Reports and Graphs 
+• Use report_checks with appropriate switches (-path_delay, -fields, -nosplit, etc.) to 
+display SPEF annotation. 
+• Generate and plot timing graphs for each corner (similar to the examples in Day 26 
+repo). 
+• Capture key metrics for each corner: 
+o Worst Negative Slack (WNS) 
+o Total Negative Slack (TNS) 
+o Worst Hold Slack (WHS) 
+o Total Hold Slack (THS) 
+
+### 3. Compare with Post-Synthesis Results (Week 3) 
+• Retrieve Part-2 timing reports and graphs. 
+• Create a comparison table showing Week 3 vs Week 8 values for each corner: 
+Corner WNS 
+
+WNS 
+
+TNS 
+
+TNS 
+
+WHS 
+
+WHS 
+
+THS 
+
+THS 
+
+• Highlight the improvements or regressions after routing (e.g., better setup slack but 
+worse hold due to added RC effects). 
+
+### 4. Interpret Results 
+• Discuss why post-route timing differs from pre-route timing. 
+• Explain how SPEF annotation affects path delays. 
+• Comment on how physical effects (capacitance, resistance, coupling) impact
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+</details>
 
 
 
