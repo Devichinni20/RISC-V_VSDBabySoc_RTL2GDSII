@@ -1,4 +1,4 @@
-<img width="1920" height="907" alt="Screenshot (522)" src="https://github.com/user-attachments/assets/6034dc8b-255b-4cd9-afa6-968c463c3ba1" /># RISC-V_VSDBabySoc_RTL2GDSII
+# RISC-V_VSDBabySoc_RTL2GDSII
 
 ## Table of Contents
 - [Part 1: Introduction to SoC & Pre-synthesis and Post-synthesis verification flow for a minimal RISC-V System-on-Chip (SoC)](#part-2-Introduction-to-SoC-&-Pre-synthesis-&-Post-synthesis-verification-for-RISC-V)                                                      
