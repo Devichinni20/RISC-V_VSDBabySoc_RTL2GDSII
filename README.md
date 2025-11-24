@@ -2550,25 +2550,55 @@ make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk
 ```
 
 ### SYNTHESIS
+Synthesis translates the RTL Verilog code into a gate-level netlist using standard cells from the Sky130 library. Use the OpenROAD flow for synthesis.
+
+
+This generates the gate-level netlist and reports synthesis statistics, including cell count and area.
 
 <img width="1526" height="808" alt="Screenshot (461)" src="https://github.com/user-attachments/assets/56477bf9-fca1-4072-b1ab-37fc3c1327dc" />
 <img width="1529" height="815" alt="Screenshot (462)" src="https://github.com/user-attachments/assets/ba4609a8-2f8b-4d3f-a3ef-59e8ecb47eac" />
 
 ### FLOORPLAN
+Floorplanning defines the die and core areas, places I/O pads, and sets up the power distribution network.
 
 <img width="1368" height="806" alt="Screenshot (464)" src="https://github.com/user-attachments/assets/6f4e0143-d4a2-4285-a3cf-9b7111ef7ad5" />
 <img width="1432" height="819" alt="Screenshot (465)" src="https://github.com/user-attachments/assets/07e4de19-be84-47f5-a767-bf4e3048c45c" />
 <img width="1420" height="800" alt="Screenshot (466)" src="https://github.com/user-attachments/assets/eb09327c-cccb-46fc-8d73-83d94304c106" />
+
+To view the floorplan:
+
+```bash
+make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk gui_floorplan
+```
+
+
+
 
 ### GLOBAL PLACE_REPORT_DESIGN_AREA
 
 <img width="1427" height="809" alt="Screenshot (467)" src="https://github.com/user-attachments/assets/9b17e642-95e7-47db-b938-a58550d26f86" />
 
 ### PLACEMENT ANALYSIS
+Placement positions the standard cells and macros within the core area.
 
 <img width="1445" height="809" alt="Screenshot (468)" src="https://github.com/user-attachments/assets/e9fd7254-7e2a-4f00-8a75-284ffd01048b" />
 
+To view placement and congestion:
+
+```bash
+make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk gui_place
+```
+
+
+
+
+
+
 ### CTS FINAL REPORT
+CTS balances clock delays to minimize skew.
+Post-CTS timing reports are generated, including WNS, TNS, and violations.
+
+
 
 ```bash
 
@@ -2748,6 +2778,52 @@ make: *** [Makefile:547: results/sky130hd/vsdbabysoc/base/5_1_grt.odb] Error 2
 <img width="1452" height="807" alt="Screenshot (470)" src="https://github.com/user-attachments/assets/6686ede5-50ee-401a-acc1-b94072a20d33" />
 <img width="1431" height="821" alt="Screenshot (471)" src="https://github.com/user-attachments/assets/173c729c-2996-48c9-beeb-ec54d87fac96" />
 
+
+To view CTS layout:
+
+```bash
+make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk gui_cts
+```
+
+
+
+
+
+### 6. Routing
+
+Routing connects all nets using metal layers.
+
+```bash
+make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk route
+```
+
+To view the routed layout:
+
+```bash
+make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk gui_route
+```
+
+
+
+
+
+This is the most critical phase. The design fails with [ERROR GRT-0116] Global routing finished with congestion.
+
+* After making changes into the [config.mk](config.mk) managed to reduce to the following:
+
+* Finally, the routing was completed successfully without congestion errors.
+
+
+
+
+## The Fix:
+
+<details>
+<summary>Expand to Read Fix Details</summary>
+  
+  A VSDBabySoC design using OpenROAD-flow-scripts with Sky130 PDK was failing at the global routing stage (5_1_grt) with congestion overflow errors. The root cause was identified as **pin accessibility obstructions in the analog macro LEF files**, specifically metal layer obstructions blocking router access to macro pins.
+
+
 ### ERROR
 ```bash
 [INFO GRT-0018] Total wirelength: 494454 um
@@ -2772,6 +2848,588 @@ This is very common for SoC-scale designs like BabySoC on Sky130HD, especially w
 <img width="1507" height="802" alt="Screenshot (475)" src="https://github.com/user-attachments/assets/cd6637dd-143b-46e7-8636-1cafc89b0f5d" />
 
 <img width="1395" height="811" alt="Screenshot (476)" src="https://github.com/user-attachments/assets/ffe7cdd3-7bf8-44e4-b739-e2d727cc1f50" />
+
+
+
+### Why congestion happens after CTS
+
+Common causes:
+
+✔ 1. Die area too small
+
+Your earlier config had:
+```bash
+set ::env(DIE_AREA) "0 0 1500 1500"
+```
+
+For vsdbabysoc, 1500×1500 µm is too small.
+
+✔ 2. Macros are placed too close
+
+(avsdpll, avsddac) → block routing channels.
+
+✔ 3. Utilization too high
+
+Default is ~50%, but with BabySoC it becomes effectively 70–80%.
+
+### ✅ Fix (Guaranteed to remove congestion)
+
+Open your config.tcl and update these:
+1. Increase DIE size
+2. Lower target density
+3. Add more routing tracks (huge improvement)
+4. Increase macro spacing
+
+```bash
+
+# ROUTING + PLACEMENT FIXES
+set ::env(DIE_AREA) "0 0 2000 2000"
+set ::env(PL_TARGET_DENSITY) "0.45"
+set ::env(GRT_ALLOW_CONGESTION) 1
+set ::env(GRT_ADJUSTMENT) 0.3
+set ::env(MACRO_PLACE_CHANNEL) 20
+set ::env(MACRO_PLACE_HALO) "20 20"
+```
+🚀 After modifying config.tcl, run:
+```bash
+make DESIGN_CONFIG=designs/sky130hd/vsdbabysoc/config.tcl clean_floorplan
+make DESIGN_CONFIG=designs/sky130hd/vsdbabysoc/config.tcl -j4
+
+```
+Do NOT skip clean_floorplan.
+
+The updated version with die area expansion, lower density, macro padding, and CTS buffer adjustments applied:
+```bash
+
+set ::env(DESIGN_NAME) "vsdbabysoc"
+
+# --- Verilog Sources (explicit list, required for BabySoC) ---
+set ::env(VERILOG_FILES) "\
+$::env(DESIGN_DIR)/src/vsdbabysoc.v \
+$::env(DESIGN_DIR)/src/rvmyth.v \
+$::env(DESIGN_DIR)/src/rvmyth_gen.v \
+$::env(DESIGN_DIR)/src/avsdpll.v \
+$::env(DESIGN_DIR)/src/avsddac.v \
+$::env(DESIGN_DIR)/src/clk_gate.v \
+"
+
+# --- Includes ---
+set ::env(VERILOG_INCLUDE_DIRS) "$::env(DESIGN_DIR)/src/include"
+
+# --- Additional Macro Files ---
+set ::env(EXTRA_LIBS)  [glob $::env(DESIGN_DIR)/src/lib/*.lib]
+set ::env(EXTRA_LEFS)  [glob $::env(DESIGN_DIR)/src/lef/*.lef]
+set ::env(EXTRA_GDS_FILES) [glob $::env(DESIGN_DIR)/src/gds/*.gds]
+
+# --- Timing ---
+set ::env(BASE_SDC_FILE) "$::env(DESIGN_DIR)/src/vsdbabysoc_synthesis.sdc"
+set ::env(CLOCK_PORT) "CLK"
+set ::env(CLOCK_NET)  "CLK"
+set ::env(CLOCK_PERIOD) "20.0"
+
+# --- Floorplan ---
+set ::env(FP_PIN_ORDER_CFG) "$::env/DESIGN_DIR/pin_order.cfg"
+set ::env(MACRO_PLACEMENT_CFG) "$::env/DESIGN_DIR/macro.cfg"
+
+set ::env(FP_SIZING) "absolute"
+
+# --- ✅ Updated DIE AREA for congestion relief ---
+set ::env(DIE_AREA) "0 0 2200 2200"
+
+# --- Margins ---
+set ::env(BOTTOM_MARGIN_MULT) 20
+set ::env(TOP_MARGIN_MULT) 20
+set ::env(LEFT_MARGIN_MULT) 100
+set ::env(RIGHT_MARGIN_MULT) 100
+
+# --- Density / Utilization (Sky130 prefers <0.5) ---
+set ::env(CORE_UTILIZATION) "28"
+set ::env(PL_TARGET_DENSITY) "0.45"
+
+# --- Macro placement padding to open routing channels ---
+set ::env(MACRO_PLACE_HALO) "20 20"
+set ::env(MACRO_PLACE_CHANNEL) "30 30"
+
+# --- Allow more global routing iterations to tolerate congestion ---
+set ::env(GRT_ALLOW_CONGESTION) 1
+set ::env(GRT_MAX_DENSITY) 0.95
+set ::env(GRT_ADJUSTMENT) 0.15
+
+# --- CTS buffer tuning (less aggressive) ---
+set ::env(CTS_ROOT_BUFFER) "sky130_fd_sc_hd__clkbuf_2"
+
+# --- Magic ---
+set ::env(MAGIC_ZEROIZE_ORIGIN) 0
+set ::env(MAGIC_EXT_USE_GDS) 1
+```
+
+so on running 
+```bash
+make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.tcl \PLATFORM=sky130hd \DESIGN_NAME=vsdbabysoc \-j2
+```
+### ERROR
+
+```bash
+designs/sky130hd/vsdbabysoc/config.tcl:4: *** multiple target patterns. Stop.
+```
+
+SOLUTION
+```bash
+make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.tcl \
+     PLATFORM=sky130hd \
+     DESIGN_NAME=vsdbabysoc \
+     -j2
+```
+### 1.Practical ways to fix GRT-0116
+
+1.Increase die area further
+
+-If feasible, increase it gradually (e.g., 2200–2500) and rerun placement & GRT.
+
+2.Adjust GRT congestion thresholds
+-In global_route.tcl or config.tcl, look for options like:
+```bash
+set_max_congestion 0.8
+```
+-Increasing the allowed congestion may let routing complete.
+
+3.Enable layer assignment / route layer optimization
+
+-Check your OpenROAD GRT settings for vertical_layer_bias or route_layers and increase number of available routing layers if possible.
+
+4.Run incremental placement optimization
+-Sometimes re-running cts → placement → legalization with slightly looser spacing helps.
+
+5.Check macros / IO placement
+
+-Congestion often happens near the IO pads or large macros.
+-Move large macros or spread them out.
+
+Quick checks you can do
+```bash
+openroad -gui
+read_def <your_def_file>
+view_congestion
+```
+But the files exist in .odb not .db as follows
+```bash
+/workspaces/vsd-pd/OpenROAD-flow-scripts/flow/results/s
+ky130hd/vsdbabysoc/base$ ls
+1_1_yosys_canonicalize.rtlil  2_4_floorplan_pdn.odb     3_place.odb
+1_2_yosys.v                   2_floorplan.odb           3_place.sdc
+1_synth.sdc                   2_floorplan.sdc           4_1_cts.odb
+1_synth.v                     3_1_place_gp_skip_io.odb  4_cts.odb
+2_1_floorplan.odb             3_2_place_iop.odb         4_cts.sdc
+2_1_floorplan.sdc             3_2_place_iop.tcl         5_1_grt-failed.odb
+2_2_floorplan_macro.odb       3_3_place_gp.odb          clock_period.txt
+2_2_floorplan_macro.tcl       3_4_place_resized.odb     mem.json
+2_3_floorplan_tapcell.odb     3_5_place_dp.odb
+```
+1. .odb → OpenROAD Design Binary database (ODB), used internally by OpenROAD for placement, CTS, and routing.
+
+2. .def → optional export from ODB; OpenROAD can read/write DEF, but the flow doesn’t always export it by default.
+
+So the absence of .def is normal if the flow only produces ODB files.
+
+<img width="1421" height="801" alt="Screenshot (478)" src="https://github.com/user-attachments/assets/ad99d079-ee69-4376-a46f-934d27de1966" />
+
+
+## 2. Investigation Process
+
+### Phase 1: Initial Configuration Analysis
+
+The original `config.mk` had aggressive routing settings:
+
+```makefile
+export PLACE_DENSITY   = 0.30
+export MACRO_PLACE_HALO    = 20 20
+export MACRO_PLACE_CHANNEL = 40 40
+export GRT_LAYER_ADJUSTMENTS = {met1:0.15,met2:0.12,met3:0.10,met4:0.08,met5:0.05}
+```
+
+These settings appeared reasonable for a 13% utilization design.
+
+### Phase 2: Congestion Report Analysis
+
+The congestion report revealed the critical insight:
+
+```rpt
+violation type: Horizontal congestion
+    srcs: net:RV_TO_DAC\[9\]
+    comment: capacity:0 usage:1 overflow:1
+    bbox = (1090.2000, 579.6000) - (1097.1000, 586.5000) on Layer -
+```
+
+**Key observation:** `capacity:0` indicated the router had **zero legal routing tracks** in these regions, not just high congestion.
+
+### Phase 3: LEF File Inspection
+
+Examining `avsddac.lef` revealed the root cause:
+
+#### Problem 1: OUT Pin Access Blocked by met4 OBS
+
+```lef
+PIN OUT
+    PORT
+      LAYER met4 ;
+        RECT 1172.680 1127.710 1173.730 1175.360 ;
+    END
+END OUT
+
+OBS
+    LAYER met4 ;
+        RECT 154.520 1171.010 1172.280 1175.050 ;  ← Ends at x=1172.280
+        RECT 1174.130 1127.310 1188.200 1175.050 ; ← Starts at x=1174.130
+```
+
+The OUT pin (x: 1172.680-1173.730) was squeezed between obstructions with only ~0.4µm clearance on each side—insufficient for routing.
+
+#### Problem 2: D[8] and D[9] Pins Only on li1 Layer
+
+```lef
+PIN D[8]
+    PORT
+      LAYER li1 ;
+        RECT 1117.200 613.050 1117.850 709.180 ;
+    END
+
+PIN D[9]
+    PORT
+      LAYER li1 ;
+        RECT 1150.220 613.050 1151.250 755.620 ;
+    END
+```
+
+The li1 layer has effectively **zero routing capacity** in Sky130:
+
+```lef
+li1        Vertical            0            10          0.00%
+```
+
+#### Problem 3: Massive met1 Obstruction
+
+```lef
+LAYER met1 ;
+    RECT 140.750 613.050 1313.360 1168.430 ;  ← Covers entire macro interior
+```
+
+This blocked any met1 access to the li1-only pins.
+
+---
+
+## 3. Resolution Strategy
+
+### Fix 1: Widen met4 OBS Gap for OUT Pin
+
+**Before:**
+
+```lef
+LAYER met4 ;
+    RECT 154.520 1171.010 1172.280 1175.050 ;
+    RECT 1174.130 1127.310 1188.200 1175.050 ;
+```
+
+**After:**
+
+```lef
+LAYER met4 ;
+    RECT 154.520 1171.010 1168.000 1175.050 ;  ← Moved left edge back
+    RECT 1178.000 1127.310 1188.200 1175.050 ; ← Moved right edge forward
+```
+
+This created a ~10µm routing corridor around the OUT pin instead of ~1.85µm.
+
+### Fix 2: Add met1 Access Points for D[8] and D[9] Pins
+
+**Before:**
+
+```lef
+PIN D[8]
+    PORT
+      LAYER li1 ;
+        RECT 1117.200 613.050 1117.850 709.180 ;
+    END
+END D[8]
+```
+
+**After:**
+
+```lef
+PIN D[8]
+    PORT
+      LAYER li1 ;
+        RECT 1117.200 613.050 1117.850 709.180 ;
+      LAYER met1 ;
+        RECT 1115.000 608.000 1120.000 613.050 ;  ← NEW: Access below OBS
+    END
+END D[8]
+```
+
+The new met1 shapes extend **below** y=613.050, outside the met1 obstruction boundary, giving the router legal access paths.
+
+---
+
+## 4. Technical Explanation
+
+### Why This Happens
+
+Analog macros (DAC, PLL) are often created with:
+
+1. **Pins on lower metal layers (li1)** for analog signal integrity
+2. **Large obstructions** to protect internal routing from interference
+3. **Minimal consideration for digital router requirements**
+
+OpenROAD's TritonRoute requires:
+
+1. Legal access points to every pin
+2. Sufficient routing capacity on accessible layers
+3. Clear paths from pin access points to the routing grid
+
+### The Pin Access Problem Illustrated
+
+```text
+                    ┌─────────────────────────────────┐
+                    │         met1 OBS                │
+                    │   (blocks entire interior)      │
+                    │                                 │
+    Router cannot   │    ┌──────┐                     │
+    reach pin! ─────│───►│D[8]  │ (li1 only)          │
+                    │    │ pin  │                     │
+                    │    └──────┘                     │
+                    │                                 │
+                    └─────────────────────────────────┘
+                    y = 613.050 ─────────────────────────
+
+    SOLUTION: Add met1 shape BELOW y=613.050
+
+                    ┌─────────────────────────────────┐
+                    │         met1 OBS                │
+                    │                                 │
+                    │    ┌──────┐                     │
+                    │    │D[8]  │ (li1)               │
+                    │    │ pin  │                     │
+                    │    └─┬────┘                     │
+                    └──────│──────────────────────────┘
+                    ═══════╪═══════  y = 613.050
+                        ┌──┴───┐
+    Router can now ────►│ met1 │ (new access point)
+    reach pin!          │access│
+                        └──────┘
+```
+
+---
+
+## 5. Results
+
+### Before Fix
+
+```bash
+[ERROR GRT-0116] Global routing finished with congestion.
+Total Overflow: 29 violations
+```
+
+![alt text](assets/22.png)
+
+### After Fix
+
+```bash
+[INFO GRT-0018] Total wirelength: 407106 um
+[INFO GRT-0014] Routed nets: 6450
+[INFO ANT-0002] Found 0 net violations.
+[INFO ANT-0001] Found 0 pin violations.
+Design area 728556 um^2 13% utilization.
+```
+
+
+---
+
+## 6. Key Lessons Learned
+
+### For Physical Design Engineers
+
+1. **Always verify macro pin accessibility** - Check that pins have routing access on layers the router can use
+
+2. **Understand layer routing capacity** - li1 in Sky130 has near-zero routing capacity; pins must have met1+ access
+
+3. **Inspect OBS sections carefully** - Obstructions can inadvertently block pin access even with sufficient apparent clearance
+
+4. **Use congestion reports effectively** - `capacity:0` indicates physical blockage, not just high utilization
+
+### For Analog Macro Designers
+
+1. **Provide multi-layer pin definitions** - Include met1 or met2 access shapes for all pins
+
+2. **Create routing channels** - Leave gaps in obstructions near pin locations
+
+3. **Document routing requirements** - Specify minimum halo sizes and routing layer requirements
+
+---
+
+## 7. Verification Commands
+
+To verify the fix worked:
+
+```bash
+# View the routed design
+make gui_route DESIGN_CONFIG=designs/sky130hd/VSDBabySoC/config.mk
+
+# Check for DRC violations
+make drc DESIGN_CONFIG=designs/sky130hd/VSDBabySoC/config.mk
+
+# Generate final reports
+make report DESIGN_CONFIG=designs/sky130hd/VSDBabySoC/config.mk
+```
+
+---
+
+## 8. Files Modified
+
+| File | Change |
+|------|--------|
+| `avsddac.lef` | Widened met4 OBS gap around OUT pin; Added met1 access shapes to D[8], D[9] pins |
+| `config.mk` | Increased MACRO_PLACE_HALO and MACRO_PLACE_CHANNEL (optional) |
+| `macro.cfg` | Repositioned macros away from die edges (optional) |
+
+---
+
+## 9. Conclusion
+
+This routing failure exemplifies a common challenge in mixed-signal SoC design: analog macros created without consideration for digital place-and-route requirements. The fix required understanding both the analog macro's physical structure and the digital router's access requirements. By adding appropriate metal layer access points and clearing obstruction blockages, the design achieved zero routing violations with minimal impact to the original macro functionality.
+
+</details>
+
+
+
+
+
+
+
+
+### SPEF (Standard Parasitic Exchange Format) extraction
+It is a file that contains parasitic extraction information of your routed design — mainly:
+Resistance (R)
+Capacitance (C)
+Net connectivity
+Parasitic nodes created after routing
+
+SPEF is used for Post-Route Static Timing Analysis (STA) to get accurate timing numbers because after routing, wires have real RC delay.
+
+### ✅ What SPEF Contains (Simple Explanation)
+
+For each net in your design, SPEF stores:
+
+*Total capacitance of the net
+*Capacitance of each sub-node
+*Resistances between wire segments
+*Coupling capacitances between signals
+
+Example small snippet:
+
+```bash
+*D_NET N1 0.025
+*CAP
+1 N1 0.010
+2 N1 N2 0.015
+*RES
+1 N1 N1_1 50.0
+2 N1_1 N2 40.0
+```
+
+### ✅ Why SPEF Is Important
+
+After routing, wires create delay.
+SPEF gives actual delays to STA tools like OpenSTA or PrimeTime.
+
+Without SPEF → STA uses ideal wires → wrong timing.
+
+With SPEF → Real RC delay → accurate timing report.
+
+### 🚀 How to Generate SPEF in OpenROAD (exact steps)
+
+You should be at post-route stage (detailed routing completed).
+
+In the OpenROAD Tcl terminal, run:
+
+1️⃣ Load your design (DEF + LIB + SDC)
+
+Example:
+```bash
+read_lef tech.lef
+read_lef stdcell.lef
+read_def routed.def
+read_liberty typical.lib
+read_sdc design.sdc
+```
+
+2️⃣ Run the SPEF extraction
+
+OpenROAD command:
+```bash
+estimate_parasitics -spef design.spef
+```
+
+
+
+
+OR, in newer flows:
+```bash
+write_spef design.spef
+```
+3️⃣ Verify SPEF was generated
+```bash
+report_parasitics
+```
+
+You will see resistance and capacitance values per net.
+
+4️⃣ Use SPEF for Post-Route STA
+```bash
+read_spef design.spef
+report_checks -path_delay max
+report_tns
+report_wns
+```
+
+Now STA will show real timing after routing.
+
+### 🎯 Where to run the commands?
+
+Run inside OpenROAD Tcl command window (terminal inside GUI or openroad executable in shell).
+
+Not inside Linux terminal.
+Inside OpenROAD only.
+
+
+###  Post-Route STA
+```bash
+read_liberty tech/typical.lib
+read_sdc constraints/design.sdc
+read_spef results/design.spef
+
+report_checks -path_delay max
+report_tns
+report_wns
+
+```
+ Understanding how the generated SPEF is used for post-route STA in real design flows.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
