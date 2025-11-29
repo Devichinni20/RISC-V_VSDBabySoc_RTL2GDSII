@@ -2572,16 +2572,13 @@ make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk gui_floorplan
 ```
 <img width="1920" height="875" alt="Screenshot (508)" src="https://github.com/user-attachments/assets/933d09aa-d4ba-45f1-89b2-22e6aa37bcad" />
 
+This image shows the floorplan view in OpenROAD where you can see two macros placed: DAC and PLL after the floorplanning step.
 
-<img width="1920" height="917" alt="Screenshot (504)" src="https://github.com/user-attachments/assets/4128a66e-b1ad-4be2-98aa-71af9fd40a30" />
-<img width="1824" height="894" alt="Screenshot (506)" src="https://github.com/user-attachments/assets/72060893-1d8f-43c8-98df-04d8dd87b2c0" />
+<img width="1598" height="860" alt="Screenshot 2025-11-29 113430" src="https://github.com/user-attachments/assets/ec537003-b9c6-4483-beab-af193056a522" />
 
-<img width="1920" height="926" alt="Screenshot (507)" src="https://github.com/user-attachments/assets/ba8f9e7c-e048-4a11-a21d-a02cb80e6044" />
+<img width="1600" height="784" alt="Screenshot 2025-11-29 113556" src="https://github.com/user-attachments/assets/2e224f13-b6e2-4ba7-b993-dcfdd4cd4cf7" />
 
-
-
-
-
+<img width="1504" height="517" alt="image" src="https://github.com/user-attachments/assets/2d1ab9a8-42ae-4f91-a9bb-608a54d756a8" />
 
 
 ### GLOBAL PLACE_REPORT_DESIGN_AREA
@@ -2598,7 +2595,32 @@ To view placement and congestion:
 ```bash
 make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk gui_place
 ```
-<img width="1920" height="923" alt="Screenshot (510)" src="https://github.com/user-attachments/assets/1e434790-1c34-4e8d-8f3c-7880f5866195" />
+This image shows the placement stage in OpenROAD with the placement density heat map enabled.
+
+
+<img width="1592" height="913" alt="image" src="https://github.com/user-attachments/assets/3306da81-e544-4b0c-a89e-d5230cd9b030" />
+This image shows a zoomed-in view of the Placement Density Heatmap after the placement stage:
+
+Red regions indicate areas with higher cell density, approaching 100%.
+Green and blue regions indicate moderate to low cell density.
+<img width="1600" height="850" alt="image" src="https://github.com/user-attachments/assets/79288113-316e-4acf-a243-430e0a195c84" />
+
+The highlighted row (ROW_128_2) displays details such as origin coordinates, site count, site spacing, and bounding box dimensions.
+❗Note: In the floorplan stage, you do not see any placement density heat maps because standard cells have not yet been placed. The heat map will only appear after the placement step.
+
+The placement density percentage is calculated as:
+
+Placement Density (%) = (Area Occupied by Cells ÷ Total Placement Area) × 100
+
+<img width="1590" height="780" alt="image" src="https://github.com/user-attachments/assets/ba57a4fe-1add-4b3e-bf33-432f06e9fe6f" />
+
+
+This image shows the Pin Density Heatmap after the placement stage.
+
+The pin density percentage is calculated as:
+
+Pin Density (%) = (Number of Pins in a Region ÷ Total Area of that Region) × 100
+
 
 <img width="1920" height="926" alt="Screenshot (512)" src="https://github.com/user-attachments/assets/83f96dc6-3f60-401f-a01e-42f29a404959" />
 <img width="1920" height="917" alt="Screenshot (513)" src="https://github.com/user-attachments/assets/0e864480-5026-491b-a7a4-eaf3176d74fb" />
@@ -2614,20 +2636,6 @@ make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk gui_place
 
 
 <img width="1920" height="910" alt="Screenshot (521)" src="https://github.com/user-attachments/assets/4093ee21-5cd6-47e6-99d6-a8f71a0e6d7a" />
-
-<img width="1920" height="907" alt="Screenshot (522)" src="https://github.com/user-attachments/assets/1301baf0-01d9-4dd0-9d37-0cda419ca3ea" />
-
-
-<img width="1920" height="909" alt="Screenshot (523)" src="https://github.com/user-attachments/assets/15aac011-263c-4b4c-81e1-db1c7c2f63f5" />
-
-
-<img width="1920" height="897" alt="Screenshot (524)" src="https://github.com/user-attachments/assets/6861e878-4053-43c4-b648-836222b1347e" />
-
-
-<img width="1920" height="900" alt="Screenshot (525)" src="https://github.com/user-attachments/assets/4591472c-ab8a-4c6a-8dbf-ebc4102d2896" />
-
-
-<img width="1920" height="903" alt="Screenshot (526)" src="https://github.com/user-attachments/assets/76754562-0192-4a00-b22d-71627407a38d" />
 
 
 
