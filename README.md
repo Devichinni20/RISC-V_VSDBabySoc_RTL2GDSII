@@ -1931,6 +1931,10 @@ GDSII Generation – Produces the final mask layout file for fabrication.
 <img width="1920" height="1080" alt="Screenshot (361)" src="https://github.com/user-attachments/assets/3f05cdb0-6128-4175-a222-78312436bab7" />
 
 #### 3.CTS
+This image shows the Clock Tree Synthesis (CTS) stage, highlighting a placed clock buffer (clkbuf_leaf_209_CLK) with its properties displayed in the Inspector, including position, orientation, and connectivity details.
+
+<img width="1591" height="772" alt="image" src="https://github.com/user-attachments/assets/e29870a9-7a47-4095-87d6-ac6c6ceb8ba0" />
+
 
 <img width="1920" height="1080" alt="Screenshot (362)" src="https://github.com/user-attachments/assets/72aad87e-6497-4b9a-b7aa-d33e2830d820" />
 <img width="1920" height="1080" alt="Screenshot (365)" src="https://github.com/user-attachments/assets/91c523d3-d1da-4ed2-9a51-da3a7560eb22" />
