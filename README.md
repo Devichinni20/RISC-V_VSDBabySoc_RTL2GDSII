@@ -3536,6 +3536,7 @@ Zoomed-in view of the design after CTS, showing inserted clock buffers and routi
     4_cts_final.rpt
   </summary>
 
+CTS phase runs hierarchical H-tree construction for balanced clock skew.
   ```bash
 
 
