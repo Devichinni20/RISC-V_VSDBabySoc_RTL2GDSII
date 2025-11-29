@@ -4044,8 +4044,14 @@ To view the routed layout:
 make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk gui_route
 ```
 
+<img width="1489" height="513" alt="image" src="https://github.com/user-attachments/assets/7c03092a-0374-4c3f-81b4-56b124dfc83b" />
 
 
+## Horizontal Congestion
+<img width="1488" height="523" alt="image" src="https://github.com/user-attachments/assets/010e6403-9766-40ad-a613-23179906a6bc" />
+
+## Vertical Congestion
+<img width="1485" height="536" alt="image" src="https://github.com/user-attachments/assets/60bdc180-3c76-4b47-9241-7e9449ead302" />
 
 
 This is the most critical phase. The design fails with [ERROR GRT-0116] Global routing finished with congestion.
