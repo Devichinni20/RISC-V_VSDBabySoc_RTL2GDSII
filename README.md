@@ -4950,6 +4950,13 @@ Week 0 ────────────────────────�
 - 👥 [OpenEDA Forum](https://openeda.dev/)
 
 ---
+  
+# Acknowledgements
+
+* [Kunal Ghosh](https://github.com/kunalg123), Co-founder, VSD Corp. Pvt. Ltd.
+* [Nickson P Jose](https://github.com/nickson-jose), Physical Design Engineer, Intel Corporation.
+* [R. Timothy Edwards](https://github.com/RTimothyEdwards), Senior Vice President of Analog and Design, efabless Corporation.
+---
 
 <div align="center">
   <h3>🎉 The Complete RISC-V VSDBaby SoC Journey Ends Here 🎉</h3>
@@ -4969,13 +4976,6 @@ Week 0 ────────────────────────�
 
 
 
-
-  
-# Acknowledgements
-
-* [Kunal Ghosh](https://github.com/kunalg123), Co-founder, VSD Corp. Pvt. Ltd.
-* [Nickson P Jose](https://github.com/nickson-jose), Physical Design Engineer, Intel Corporation.
-* [R. Timothy Edwards](https://github.com/RTimothyEdwards), Senior Vice President of Analog and Design, efabless Corporation.
 
 
 
