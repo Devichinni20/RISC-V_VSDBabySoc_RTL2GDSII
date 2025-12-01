@@ -1,4 +1,11 @@
-# RISC-V_VSDBabySoc_RTL2GDSII
+# 🖥️ VSDBaby RISC-V SoC 
+<div align="center">
+
+[![RISC-V](https://img.shields.io/badge/RISC--V-SoC%20Tapeout-blue?style=for-the-badge&logo=riscv)](https://riscv.org/)
+[![VSD](https://img.shields.io/badge/VSD-Program-orange?style=for-the-badge)](https://vsdiat.vlsisystemdesign.com/)
+
+
+</div>
 
 ## Table of Contents
 - [Part 1: Introduction to SoC & Pre-synthesis and Post-synthesis verification flow for a minimal RISC-V System-on-Chip (SoC)](#part-2-Introduction-to-SoC-&-Pre-synthesis-&-Post-synthesis-verification-for-RISC-V)                                                      
@@ -2574,19 +2581,19 @@ To view the floorplan:
 ```bash
 make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk gui_floorplan
 ```
-<img width="1920" height="875" alt="Screenshot (508)" src="https://github.com/user-attachments/assets/933d09aa-d4ba-45f1-89b2-22e6aa37bcad" />
+
 
 This image shows the floorplan view in OpenROAD where you can see two macros placed: DAC and PLL after the floorplanning step.
 
-<img width="1598" height="860" alt="Screenshot 2025-11-29 113430" src="https://github.com/user-attachments/assets/ec537003-b9c6-4483-beab-af193056a522" />
+<img width="1596" height="907" alt="Screenshot 2025-12-02 004824" src="https://github.com/user-attachments/assets/a6e6d0fa-33c5-4afa-850e-f70733c0c582" />
+<img width="1591" height="801" alt="Screenshot 2025-12-02 004853" src="https://github.com/user-attachments/assets/44b35650-9afc-4e1e-a7f7-b69f5578e952" />
 
-<img width="1600" height="784" alt="Screenshot 2025-11-29 113556" src="https://github.com/user-attachments/assets/2e224f13-b6e2-4ba7-b993-dcfdd4cd4cf7" />
+<img width="1597" height="501" alt="image" src="https://github.com/user-attachments/assets/7e9f0340-96e3-4d28-8968-13d8ab4edb92" />
 
-<img width="1504" height="517" alt="image" src="https://github.com/user-attachments/assets/2d1ab9a8-42ae-4f91-a9bb-608a54d756a8" />
 
 <details>
   <summary>
-   2_fllorplan_final.rpt
+   2_floorplan_final.rpt
   </summary>
 
   ```bash
@@ -2998,10 +3005,11 @@ To view placement and congestion:
 make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk gui_place
 ```
 This image shows the placement stage in OpenROAD with the placement density heat map enabled.
+<img width="1592" height="886" alt="Screenshot 2025-12-01 185429" src="https://github.com/user-attachments/assets/6b8cc8a1-6cff-433d-9436-cf17b1cdff41" />
 
 
-<img width="1592" height="913" alt="image" src="https://github.com/user-attachments/assets/3306da81-e544-4b0c-a89e-d5230cd9b030" />
 This image shows a zoomed-in view of the Placement Density Heatmap after the placement stage:
+
 
 Red regions indicate areas with higher cell density, approaching 100%.
 Green and blue regions indicate moderate to low cell density.
@@ -3014,7 +3022,8 @@ The placement density percentage is calculated as:
 
 Placement Density (%) = (Area Occupied by Cells ÷ Total Placement Area) × 100
 
-<img width="1590" height="780" alt="image" src="https://github.com/user-attachments/assets/ba57a4fe-1add-4b3e-bf33-432f06e9fe6f" />
+
+<img width="1591" height="781" alt="Screenshot 2025-12-01 191827" src="https://github.com/user-attachments/assets/91822930-01ce-4f56-8752-bb9775da62ff" />
 
 
 This image shows the Pin Density Heatmap after the placement stage.
@@ -3023,21 +3032,23 @@ The pin density percentage is calculated as:
 
 Pin Density (%) = (Number of Pins in a Region ÷ Total Area of that Region) × 100
 
+<img width="589" height="493" alt="Screenshot 2025-12-01 191731" src="https://github.com/user-attachments/assets/da230318-beaf-43b8-898c-da85d49b34dc" />
 
-<img width="1920" height="926" alt="Screenshot (512)" src="https://github.com/user-attachments/assets/83f96dc6-3f60-401f-a01e-42f29a404959" />
-<img width="1920" height="917" alt="Screenshot (513)" src="https://github.com/user-attachments/assets/0e864480-5026-491b-a7a4-eaf3176d74fb" />
-<img width="1920" height="936" alt="Screenshot (514)" src="https://github.com/user-attachments/assets/9f50bc72-c6be-44ea-82a8-90345c82b103" />
-<img width="1920" height="885" alt="Screenshot (516)" src="https://github.com/user-attachments/assets/fab833a6-bf23-4a84-838a-995e0a1a239d" />
-<img width="1920" height="887" alt="Screenshot (517)" src="https://github.com/user-attachments/assets/14e60bb6-e74c-4ff3-b561-120fabebde2b" />
+<img width="1582" height="646" alt="Screenshot 2025-12-01 190059" src="https://github.com/user-attachments/assets/3bb32a1b-db75-452e-a491-1ba39d506f4e" />
 
-<img width="1920" height="904" alt="Screenshot (518)" src="https://github.com/user-attachments/assets/8f558532-f2fe-472a-bb0b-7b2d387784c5" />
+<img width="879" height="596" alt="Screenshot 2025-12-01 190115" src="https://github.com/user-attachments/assets/6a43328e-fd9a-4460-a89c-2a320f5cce3d" />
 
-<img width="1920" height="897" alt="Screenshot (519)" src="https://github.com/user-attachments/assets/0f15460e-1a24-4f13-99e0-accbcb8db230" />
-
-<img width="1920" height="898" alt="Screenshot (520)" src="https://github.com/user-attachments/assets/4a95075c-4cbb-4b77-9812-13a3855033eb" />
+<img width="1589" height="881" alt="Screenshot 2025-12-01 185642" src="https://github.com/user-attachments/assets/3eda5d73-b9b8-49ec-9d3e-96656bdaf742" />
 
 
-<img width="1920" height="910" alt="Screenshot (521)" src="https://github.com/user-attachments/assets/4093ee21-5cd6-47e6-99d6-a8f71a0e6d7a" />
+
+<img width="1584" height="662" alt="Screenshot 2025-12-01 185818" src="https://github.com/user-attachments/assets/df1677d5-5591-4a8f-a2a2-0bd33f69fa8b" />
+
+<img width="876" height="608" alt="Screenshot 2025-12-01 185903" src="https://github.com/user-attachments/assets/76fe83fb-706c-4877-92d8-7f5ba5b267cd" />
+
+
+
+
 
 <details>
   <summary>
@@ -3447,31 +3458,37 @@ Post-CTS timing reports are generated, including WNS, TNS, and violations.
 <img width="1431" height="821" alt="Screenshot (471)" src="https://github.com/user-attachments/assets/173c729c-2996-48c9-beeb-ec54d87fac96" />
 
 
+
+
+
 To view CTS layout:
 
 ```bash
 make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk gui_cts
 ```
 
-This image shows the Clock Tree Synthesis (CTS) stage, highlighting a placed clock buffer (Clk_buf_leaf_7_clk) with its properties displayed in the Inspector, including position, orientation, and connectivity details.
-<img width="1591" height="788" alt="image" src="https://github.com/user-attachments/assets/0d14d7ff-70df-4d9e-bf38-42728cdaaf85" />
+<img width="1588" height="819" alt="Screenshot 2025-12-01 192649" src="https://github.com/user-attachments/assets/577efff8-f207-48f6-8e6d-635510b03ceb" />
 
-<!--
-<img width="1920" height="920" alt="Screenshot (527)" src="https://github.com/user-attachments/assets/69741f37-2674-43f0-808f-0f7ed5c86781" />
+This image shows the Clock Tree Synthesis (CTS) stage, highlighting a placed clock buffer (Clk_buf_leaf_77_clk) with its properties displayed in the Inspector, including position, orientation, and connectivity details.
 
-<img width="1920" height="926" alt="Screenshot (528)" src="https://github.com/user-attachments/assets/d9b3cac7-81c1-4d47-aa99-ba60f4eeba51" />
--->
+
+<img width="1318" height="812" alt="Screenshot 2025-12-01 192832" src="https://github.com/user-attachments/assets/5cc40eef-35d2-42bb-b295-3881179bee0d" />
+
+<img width="1506" height="802" alt="Screenshot 2025-12-01 192904" src="https://github.com/user-attachments/assets/eabe3958-2e35-4942-bd77-a39597b8aba9" />
+
+
 This image shows the Clock Tree Viewer after CTS, illustrating the clock buffer distribution on the layout and a histogram of clock insertion delays, indicating balanced clock skew across the sinks.
-<img width="1584" height="900" alt="image" src="https://github.com/user-attachments/assets/abea464f-5540-4860-93d5-9662cf9de69b" />
+
+<img width="1595" height="883" alt="Screenshot 2025-12-01 192326" src="https://github.com/user-attachments/assets/399242fb-f832-4281-97b4-c7c98a30532c" />
 
 
-<img width="635" height="495" alt="image" src="https://github.com/user-attachments/assets/02dbeef9-c6b3-46a4-970a-58292a76379e" />
+<img width="1495" height="810" alt="Screenshot 2025-12-01 193009" src="https://github.com/user-attachments/assets/0bb669e1-ab5b-431f-8604-d51359e8ce2d" />
 
 
 This image shows the Clock Tree Viewer after Clock Tree Synthesis (CTS), illustrating the hierarchical structure of the clock network. The root node at the top represents the clock source (pll/CLK), and the branches show the inserted clock buffers used to distribute the clock signal across the design. The vertical axis represents the clock arrival times (in nanoseconds) at each stage. The endpoints at the bottom represent the registers (clock sinks), where the clock reaches after passing through multiple buffer levels. The balanced branching and closely aligned arrival times indicate low clock skew and a well-optimized clock tree.
 
+<img width="1108" height="760" alt="Screenshot 2025-12-01 194235" src="https://github.com/user-attachments/assets/4d2f4c57-6bba-4505-816f-925f88e0d6c5" />
 
-<img width="1324" height="816" alt="image" src="https://github.com/user-attachments/assets/6822fc73-bc2f-46d1-8bac-5ac4068f37ec" />
 
 This image shows the Setup Timing Report, presenting a list of timing paths with key metrics such as:
 
@@ -3483,8 +3500,7 @@ Logic Delay
 Logic Depth
 Fanout
 All paths have positive slack, confirming that the design meets setup timing requirements.
-
-<img width="1598" height="860" alt="image" src="https://github.com/user-attachments/assets/023b480b-4509-4e8a-a9d4-df1074bcbf72" />
+<img width="1594" height="825" alt="Screenshot 2025-12-01 194550" src="https://github.com/user-attachments/assets/49b280fe-c576-429d-87b1-209d131dff20" />
 
 This image displays the Hold Timing Report, showing timing paths with details such as:
 
@@ -3496,39 +3512,26 @@ Logic Delay
 Fanout
 All paths listed have positive slack, indicating that the design meets hold timing requirements and is free from hold violations.
 
-<img width="1594" height="858" alt="image" src="https://github.com/user-attachments/assets/e24fadd8-21e1-4106-aeb2-cea112b70398" />
+<img width="1585" height="712" alt="Screenshot 2025-12-01 195744" src="https://github.com/user-attachments/assets/58af943c-dbee-4968-85b3-0e487e2be42c" />
+
 
 This image shows the Setup Slack Histogram after CTS. The histogram represents the distribution of endpoint slack values, all of which are positive, indicating that there are no setup timing violations.
 
-<img width="1601" height="858" alt="image" src="https://github.com/user-attachments/assets/0c1a82e8-0d29-45cf-a026-83c2394de56c" />
+<img width="1586" height="838" alt="Screenshot 2025-12-01 195955" src="https://github.com/user-attachments/assets/e2d5797d-0aaa-4349-9cb5-9e04b9041dcf" />
 
 This image shows the Hold Slack Histogram after CTS. The histogram represents the distribution of hold slack values for all endpoints. All values are positive, confirming that the design meets hold timing requirements without any violations.
 
+<img width="1594" height="844" alt="Screenshot 2025-12-01 200027" src="https://github.com/user-attachments/assets/c6491b60-5c96-44de-943b-1b54a9354ce6" />
 
-<img width="1500" height="815" alt="image" src="https://github.com/user-attachments/assets/3fa7e032-dd44-488b-9626-1e55ce97f648" />
 
 Zoomed-in view of the design after CTS, showing inserted clock buffers and routing connections.
 
-<img width="1499" height="810" alt="image" src="https://github.com/user-attachments/assets/dca45093-edc2-429d-b482-7d3446737ee2" />
-
-<img width="1497" height="817" alt="image" src="https://github.com/user-attachments/assets/46d957aa-0693-4ff7-b308-c565667ccd90" />
-
-<img width="1587" height="864" alt="image" src="https://github.com/user-attachments/assets/397c2082-fe81-449c-83a4-6f4fb62b887a" />
-<img width="1598" height="878" alt="image" src="https://github.com/user-attachments/assets/7106c5c6-d14d-43c4-89ac-9e460f68cd93" />
 
 
+<img width="1584" height="857" alt="Screenshot 2025-12-01 200309" src="https://github.com/user-attachments/assets/d47d8591-a9e9-4270-9e7c-f4d16aae6d6a" />
 
-<!--
-<img width="1920" height="901" alt="Screenshot (530)" src="https://github.com/user-attachments/assets/56009502-6a59-48e3-8814-fcabb6a5eeaf" />
+<img width="1592" height="818" alt="Screenshot 2025-12-01 200559" src="https://github.com/user-attachments/assets/f54acc8d-5399-4c5c-acc0-f2e211463585" />
 
-
-<img width="1920" height="901" alt="Screenshot (531)" src="https://github.com/user-attachments/assets/fead1ac6-7a87-4aa6-b56c-955da89b2550" />
-<img width="1920" height="907" alt="Screenshot (532)" src="https://github.com/user-attachments/assets/e2ce790f-73b1-4073-8290-32a54fad47eb" />
-
-
-<img width="1920" height="913" alt="Screenshot (533)" src="https://github.com/user-attachments/assets/7ccfae75-efab-4677-9041-a1e33f7357f2" />
-
--->
 
 
 <details>
@@ -4045,26 +4048,201 @@ To view the routed layout:
 make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk gui_route
 ```
 
-<img width="1489" height="513" alt="image" src="https://github.com/user-attachments/assets/7c03092a-0374-4c3f-81b4-56b124dfc83b" />
 
+## ⚠️ Routing Congestion Problem Solved
+This error appears because the routing capacity at the DAC macro’s OUT port is 0, while the router needs a usage of 1, leading to overflow = 1.
+```bash
+Important
 
-## Horizontal Congestion
-<img width="1488" height="523" alt="image" src="https://github.com/user-attachments/assets/010e6403-9766-40ad-a613-23179906a6bc" />
+The congestion specifically occurs at the OUT port of the DAC macro.
+```
+Below is the congestion visualization from the DRC window of OpenROAD GUI:
 
-## Vertical Congestion
-<img width="1485" height="536" alt="image" src="https://github.com/user-attachments/assets/60bdc180-3c76-4b47-9241-7e9449ead302" />
+<img width="1379" height="625" alt="Screenshot 2025-12-01 201036" src="https://github.com/user-attachments/assets/93287239-00eb-43dd-afd5-3ce0029041df" />
+<img width="1577" height="800" alt="Screenshot 2025-12-01 202036" src="https://github.com/user-attachments/assets/0b0614f7-c011-4aff-87ac-ea1e499aebf1" />
+<img width="692" height="821" alt="Screenshot 2025-12-01 202051" src="https://github.com/user-attachments/assets/2ab2f94d-205d-48f2-81e0-ceb2b733b50c" />
 
+<img width="1566" height="786" alt="Screenshot 2025-12-01 202125" src="https://github.com/user-attachments/assets/950d9fee-d891-40bb-a74d-0f306cf167f4" />
 
-This is the most critical phase. The design fails with [ERROR GRT-0116] Global routing finished with congestion.
+<img width="1580" height="795" alt="Screenshot 2025-12-01 202155" src="https://github.com/user-attachments/assets/04ccef35-6fc1-4f29-b620-20b67a00bc64" />
 
-* After making changes into the [config.mk](config.mk) managed to reduce to the following:
+<img width="356" height="400" alt="Screenshot 2025-12-01 202313" src="https://github.com/user-attachments/assets/54f3d848-f7b0-462a-950e-721458f46e12" />
+
+At the OUT port of the DAC, From these images, we observe:
+
+Capacity = 0
+Usage = 1
+Overflow = 1
+
+These obstructions prevent routing through that area, causing the congestion. So these Obstructions need to be cleared.(In genearl fix part)
+```bash
+Thus avsddac.lef file is changed.
+```
+
+## Additional Steps if Congestion Persists
+
+### 1. Move Macros to a More Spaced Location
+
+Create a `macro.tcl` file to manually specify macro placement:
+
+```tcl
+place_macro -macro_name dac -location {100.0 100.0}
+place_macro -macro_name pll -location {1700.0 100.0}
+````
+
+### 2. Relax Constraints
+
+Relaxing constraints gives more slack and allows the router to use additional routing resources:
+
+```bash
+# Increase clock period
+create_clock [get_pins {pll/CLK}] -name clk -period 11.00
+```
+
+### 3. Create a Halo Around Macros
+
+Halos prevent standard cells from being placed too close to macros, improving routability:
+
+```bash
+export MACRO_PLACE_HALO=40
+```
+
+### 4. Use Higher Metal Layers
+
+Encourage the router to use higher metal layers by adjusting routing settings:
+
+* `ROUTING_LAYER_ADJUSTMENT` (set this to a lower value to force the router to use higher metal layers. Default value is 0.5) 
+* `MIN_ROUTING_LAYER` to define the minimum layer
+* `MAX_ROUTING_LAYER` to define the maximum layer
+
+### 5. Increase Core Area / Utilization
+
+Expanding the core area provides more routing room. Adjust:
+
+* `CORE_UTILIZATION`
+* or `CORE_AREA`
+
+### 6. Adjust IO Pin Placement
+
+Relax IO pin placement to avoid congested regions:
+
+* Modify the `PLACE_PINS_ARGS` variable to try different pin placements.
+
+With these corrections and tuning strategies, routing congestion around the DAC OUT port can be eliminated most of the time, ensuring smooth global and detailed routing during the physical design flow.
 
 * Finally, the routing was completed successfully without congestion errors.
+  
+### ROUTE-LAYOUT
+
+<img width="1875" height="876" alt="Screenshot 2025-12-01 222809" src="https://github.com/user-attachments/assets/483acddc-d1c4-40ee-be04-09dad2fa2c6e" />
+<img width="1030" height="569" alt="Screenshot 2025-12-01 223043" src="https://github.com/user-attachments/assets/19df9ff3-22f5-40e7-91d2-2a6a6376c1e6" />
+
+
+<img width="1226" height="608" alt="Screenshot 2025-12-01 223059" src="https://github.com/user-attachments/assets/02b0d128-dc9e-45d5-a07b-30054fff154e" />
+
+# GUI OF ROUTE
+```bash
+make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk gui_route
+```
+<img width="1600" height="907" alt="Screenshot 2025-12-01 224127" src="https://github.com/user-attachments/assets/4e655515-2061-4052-bfbf-d3de6093af8a" />
+
+<img width="862" height="785" alt="Screenshot 2025-12-01 224433" src="https://github.com/user-attachments/assets/4bacd3fe-2c9d-481c-97c2-292299016387" />
+
+<img width="1602" height="898" alt="Screenshot 2025-12-01 224504" src="https://github.com/user-attachments/assets/305764ee-abdc-4dad-92cc-155f40c5ce34" />
+
+<img width="902" height="903" alt="Screenshot 2025-12-01 224944" src="https://github.com/user-attachments/assets/84d0f827-3aed-4337-94c0-768b9aa6ce43" />
+<img width="591" height="788" alt="Screenshot 2025-12-01 225112" src="https://github.com/user-attachments/assets/6979d93a-fab5-4e31-9ac8-752b5d839d95" />
+
+<img width="1598" height="853" alt="Screenshot 2025-12-01 224342" src="https://github.com/user-attachments/assets/444d690e-65c4-4383-8e19-2b16b41fec48" />
+
+This image shows the Routing Congestion Heatmap after the routing stage. Areas with higher congestion are highlighted in red, while green regions indicate lower congestion. The highlighted net _387 is fully routed, and its properties such as bounding box and connectivity details are shown in the Inspector.
+
+<img width="1601" height="977" alt="Screenshot 2025-12-01 225633" src="https://github.com/user-attachments/assets/37ae3dbb-5dcf-4a45-8115-372eb0a8be8e" />
+
+<img width="1495" height="822" alt="Screenshot 2025-12-01 225827" src="https://github.com/user-attachments/assets/2a111ad2-cac8-49b8-b1cc-bca0a56070dd" />
+
+This image shows the net (net_387) routing overlaid on the routing congestion heatmap.
+
+-Red regions indicate areas of high routing congestion.
+-The highlighted yellow path represents the clock distribution network across the design.
+-Inspector details show net properties like type (net), routing status (ROUTED), and  
+bounding box coordinates.
+
+<img width="1498" height="816" alt="Screenshot 2025-12-01 225903" src="https://github.com/user-attachments/assets/f0f0e8de-5853-4a22-b297-20d71dc6c66c" />
+
+This image shows the routing congestion heatmap after the routing stage, with utilization values (%) displayed in each grid.
+
+Red cells represent high congestion (close to 100% utilization).
+A filler cell (FILLER_438_1876) is highlighted, with details like coordinates, bounding box, and obstructions shown in the Inspector.
+
+<img width="1307" height="814" alt="Screenshot 2025-12-01 232218" src="https://github.com/user-attachments/assets/2558f81f-3ec2-4824-ae7b-b79e3badb9e0" />
+
+Formula for Congestion:
+The routing congestion percentage is calculated as:
+```bash
+Congestion (%) = (Used Routing Tracks ÷ Available Routing Tracks) × 100
+```
+Where:
+
+Used Routing Tracks = Number of tracks occupied by wires in a specific region.
+Available Routing Tracks = Total routing capacity of that region.
+
+<img width="1541" height="851" alt="Screenshot 2025-12-01 232400" src="https://github.com/user-attachments/assets/88978991-6e5a-4438-9c5e-4a72310d57dd" />
+
+## Techniques to Reduce Routing Congestion:
+1.Increase Core Area / Die Size
+
+*Enlarging the die provides more routing tracks and reduces congestion.
+2.Adjust Placement Density
+
+*Lower the target density during placement to leave whitespace for routing.
+3.Add Placement Blockages
+
+*Create routing blockages or halos around macros to avoid routing choke points.
+4.Cell Padding
+
+*Add extra spacing between standard cells to reduce local congestion.
+5.Macro Repositioning
+
+*Move large macros toward the periphery and keep enough channel spacing.
+6.Use Higher Metal Layers
+
+*Assign global nets or critical signals to higher metal layers for better routing resources.
+7.Routing Layer Adjustment
+
+*Allow more routing layers in congested designs.
+8.Congestion-Driven Placement
+
+*Enable congestion-aware algorithms during placement in the EDA tool.
+
+
+## Timing Report after Routing:
+After completing routing, run the following in the OpenROAD GUI → Scripting window:
+```bash
+report_checks
+```
+This command provides a detailed timing analysis of critical paths.
+
+In the example below, the design meets timing with Slack = 5.60 ns (MET)
+
+<img width="1123" height="897" alt="Screenshot 2025-12-01 232852" src="https://github.com/user-attachments/assets/8876ec32-82f8-45d1-ab6b-0880e552689d" />
+
+<img width="1103" height="297" alt="Screenshot 2025-12-01 232907" src="https://github.com/user-attachments/assets/15dea2d3-efbe-4f3f-b19e-8880ba95ff21" />
+
+The image shows various log and JSON files generated by the OpenROAD flow for each stage (e.g., floorplan, placement, CTS, routing, and filler cell insertion). These files provide detailed execution reports and design data for debugging and analysis.
+
+
+
+<img width="1490" height="154" alt="Screenshot 2025-12-01 234203" src="https://github.com/user-attachments/assets/fb133563-373b-4b14-909a-070278c52f21" />
 
 
 
 
-## The Fix:
+
+
+
+
+## The General Fix:
 
 <details>
 <summary>Expand to Read Fix Details</summary>
@@ -4548,6 +4726,7 @@ This routing failure exemplifies a common challenge in mixed-signal SoC design: 
 
 
 
+
 ### Part 4: SPEF & Post-Layout STA & Timing Graphs Across PVT Corners for Routed VSDBabySoC
 
 <details>
@@ -4736,8 +4915,57 @@ worse hold due to added RC effects).
 
 
 
+## 🔟 🎓 Final Results: Silicon-Ready Design & Tape-Out Readiness {#-final-results-silicon-ready}
+
+### 🏆 Journey Summary
+
+**9-Week Transformation**:
+
+```
+Week 0 ─────────────────────────────────────────────────────────► Week 9
+  │                                                                  │
+  └─ Tool Setup ─► RTL Design ─► Synthesis ─► Physical Design ─► Tape-Out
+                      │              │              │
+                  Simulation    GLS + STA      Full Flow
+                  Functional   Timing Check    Layout Ready
+```
 
 
+---
+## 📚 References & Resources {#-references--resources}
+
+### Official Repositories
+- 🔗 [Yosys RTL Synthesizer](https://github.com/YosysHQ/yosys)
+- 🔗 [OpenROAD Flow Scripts](https://github.com/The-OpenROAD-Project/OpenROAD-flow-scripts)
+- 🔗 [OpenLANE](https://github.com/efabless/openlane)
+- 🔗 [Sky130 PDK](https://github.com/google/skywater-pdk)
+
+### Learning Resources
+- 📘 [OpenROAD Documentation](https://openroad.readthedocs.io/)
+- 📘 [Yosys Documentation](http://www.clifford.at/yosys/)
+- 📘 [VSD Courses](https://www.vlsisystemdesign.com/)
+
+### Collaboration
+- 👥 [VLSI Design Community](https://github.com/topics/vlsi-design)
+- 👥 [OpenEDA Forum](https://openeda.dev/)
+
+---
+
+<div align="center">
+  <h3>🎉 The Complete RISC-V VSDBaby SoC Journey Ends Here 🎉</h3>
+  <p><i>From idea to silicon-ready design in 9 weeks</i></p>
+  
+  ✅ **Functional** • ✅ **Verified** • ✅ **Production-Ready**
+  
+  <strong>Ready for Tape-Out! 🚀</strong>
+</div>
+
+---
+
+**Created by**: Chinni Devi Manasa
+**Program**: VSD RISC-V SoC Tapeout Program  
+**Timeline**: Week 0 - Week 9  
+**Status**: ✨ COMPLETE - READY FOR FABRICATION ✨
 
 
 
