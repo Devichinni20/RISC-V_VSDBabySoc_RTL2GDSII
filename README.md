@@ -4915,7 +4915,7 @@ worse hold due to added RC effects).
 
 
 
-## 🔟 🎓 Final Results: Silicon-Ready Design & Tape-Out Readiness {#-final-results-silicon-ready}
+##  🎓 Final Results: Silicon-Ready Design & Tape-Out Readiness {#-final-results-silicon-ready}
 
 ### 🏆 Journey Summary
 
@@ -4963,60 +4963,9 @@ Week 0 ────────────────────────�
 ---
 
 **Created by**: Chinni Devi Manasa
-**Program**: VSD RISC-V SoC Tapeout Program  
-**Timeline**: Week 0 - Week 9  
-**Status**: ✨ COMPLETE - READY FOR FABRICATION ✨
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+**Program**   : VSD RISC-V SoC Tapeout Program  
+**Timeline**  : Week 0 - Week 9  
+**Status**    : ✨ COMPLETE - READY FOR FABRICATION ✨
 
 
 
