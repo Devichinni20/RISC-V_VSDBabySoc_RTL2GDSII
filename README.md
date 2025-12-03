@@ -2065,6 +2065,8 @@ noVNC server setup for browser-based GUI access
   <img width="1023" height="148" alt="image" src="https://github.com/user-attachments/assets/4165780f-7119-48ca-b6d0-498149a2b6c9" />
 <img width="1878" height="587" alt="Screenshot 2025-11-25 025825" src="https://github.com/user-attachments/assets/0ce1c265-c181-4950-ae1c-db0817af49e6" />
 
+## 🪄Did the work in the following Codespaces Completely
+<img width="1456" height="417" alt="image" src="https://github.com/user-attachments/assets/d07db1b7-92a6-472e-bef9-f20cf620dd98" />
 
 
 ##  Run OpenROAD Flow Scripts
