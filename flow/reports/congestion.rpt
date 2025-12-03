@@ -1,0 +1,4 @@
+violation type: Vertical congestion
+	srcs: net:_02009_ net:clknet_0_CLK net:net450 net:net421 net:net355 net:net336 net:net322 net:net318 net:net399 net:net398 net:net394 net:net383 net:net376 net:net368 net:net356 net:core.CPU_dmem_wr_data_a4\[24\]
+	comment: capacity:16 usage:17 overflow:1
+	bbox = (876.3000, 1152.3000) - (883.2000, 1159.2000) on Layer -

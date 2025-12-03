@@ -1,0 +1,17 @@
+OpenROAD v2.0-25794-g7cbd77e248 
+Features included (+) or not (-): +GPU +GUI +Python
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+[INFO ORD-0030] Using 2 thread(s).
+read_liberty /workspaces/vsd-pd/OpenROAD-flow-scripts/flow/platforms/sky130hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_db ./results/sky130hd/vsdbabysoc/base/2_3_floorplan_tapcell.odb
+[WARNING PDN-0189] Supply pin pll/GND is not connected to any net.
+[WARNING PDN-0189] Supply pin pll/GND#2 is not connected to any net.
+[WARNING PDN-0189] Supply pin pll/VDD#2 is not connected to any net.
+[WARNING PDN-0189] Supply pin pll/VDD#3 is not connected to any net.
+[INFO PDN-0001] Inserting grid: grid
+[INFO PDN-0001] Inserting grid: CORE_macro_grid_1 - dac
+[INFO PDN-0001] Inserting grid: CORE_macro_grid_1 - pll
+Elapsed time: 0:03.87[h:]min:sec. CPU time: user 3.36 sys 0.20 (92%). Peak memory: 284888KB.
+Log                        Elapsed/s Peak Memory/MB  sha1sum .odb [0:20)
+2_4_floorplan_pdn                  3            278 c90947143942b5d15c38

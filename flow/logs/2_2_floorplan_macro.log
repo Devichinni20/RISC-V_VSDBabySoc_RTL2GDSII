@@ -1,0 +1,29 @@
+OpenROAD v2.0-25794-g7cbd77e248 
+Features included (+) or not (-): +GPU +GUI +Python
+This program is licensed under the BSD-3 license. See the LICENSE file for details.
+Components of this program may be licensed under more restrictive licenses which must be honored.
+[INFO ORD-0030] Using 2 thread(s).
+read_liberty /workspaces/vsd-pd/OpenROAD-flow-scripts/flow/platforms/sky130hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+read_db ./results/sky130hd/vsdbabysoc/base/2_1_floorplan.odb
+source /workspaces/vsd-pd/OpenROAD-flow-scripts/flow/designs/sky130hd/vsdbabysoc/macro.tcl
+[WARNING MPL-0002] Couldn't align pin dac/D[0] from layer li1 to the track-grid.
+[WARNING MPL-0002] Couldn't align pin dac/D[1] from layer li1 to the track-grid.
+[WARNING MPL-0002] Couldn't align pin dac/D[2] from layer li1 to the track-grid.
+[WARNING MPL-0002] Couldn't align pin dac/D[4] from layer li1 to the track-grid.
+[WARNING MPL-0002] Couldn't align pin dac/D[5] from layer li1 to the track-grid.
+[WARNING MPL-0002] Couldn't align pin dac/D[6] from layer li1 to the track-grid.
+[WARNING MPL-0002] Couldn't align pin dac/D[7] from layer li1 to the track-grid.
+[WARNING MPL-0002] Couldn't align pin dac/D[8] from layer li1 to the track-grid.
+[WARNING MPL-0002] Couldn't align pin dac/D[9] from layer li1 to the track-grid.
+[INFO MPL-0035] Macro dac placed. Bounding box (100.225um, 100.105um), (1293.795um, 662.415um). Orientation R0
+[WARNING MPL-0002] Couldn't align pin pll/ENb_VCO from layer li1 to the track-grid.
+[WARNING MPL-0002] Couldn't align pin pll/ENb_CP from layer li1 to the track-grid.
+[WARNING MPL-0002] Couldn't align pin pll/CLK from layer li1 to the track-grid.
+[WARNING MPL-0002] Couldn't align pin pll/VCO_IN from layer li1 to the track-grid.
+[INFO MPL-0035] Macro pll placed. Bounding box (1700.010um, 100.000um), (1736.190um, 113.710um). Orientation R0
+rtl_macro_placer -max_num_level 2 -halo_width 40 -halo_height 40 -min_ar 0.33 -area_weight 0.1 -wirelength_weight 100.0 -outline_weight 100.0 -boundary_weight 50.0 -notch_weight 10.0 -target_dead_space 0.05 -report_directory ./objects/sky130hd/vsdbabysoc/base/rtlmp -fence_lx 0.0 -fence_ly 0.0 -fence_ux 100000000.0 -fence_uy 100000000.0 -target_util 0.6
+[INFO MPL-0017] No unfixed macros.
+[INFO MPL-0013] Skipping macro placement.
+Elapsed time: 0:02.35[h:]min:sec. CPU time: user 0.58 sys 0.08 (28%). Peak memory: 122940KB.
+Log                        Elapsed/s Peak Memory/MB  sha1sum .odb [0:20)
+2_2_floorplan_macro                2            120 0908407391cfaef84939
